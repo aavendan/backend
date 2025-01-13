@@ -6,6 +6,11 @@ from django.http import HttpResponse
 import requests
 import json
 
+# Importe el decorador login_required
+from django.contrib.auth.decorators import login_required
+
+# Restricción de acceso con @login_required
+@login_required
 def index(request):
     # return HttpResponse("Hello, World!")
     # return render(request, 'main/base.html')
@@ -32,6 +37,9 @@ def index(request):
         'title': 'Landing - Dashboard',
         'total_responses': total_responses,
         'responses': responses,
+        'first_response': list(responses)[0]['saved'],
+        'last_response': list(responses)[-1]['saved'],
+        'most_response': '04/01/2025'
     }
     
     return render(request, 'main/index.html', data)
