@@ -7,10 +7,11 @@ import requests
 import json
 
 # Importe el decorador login_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Restricción de acceso con @login_required
 @login_required
+@permission_required('main.index_viewer', raise_exception=True)
 def index(request):
     # return HttpResponse("Hello, World!")
     # return render(request, 'main/base.html')
