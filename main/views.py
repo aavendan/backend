@@ -22,7 +22,7 @@ def index(request):
     
     # Petición al REST API
     response_http = requests.get(url)
-    response_dict = json.loads(response_http.text)
+    response_dict = json.loads(response_http.content)
     
     # print("Endpoint ", url)
     # print("Response ", response_dict)
