@@ -13,7 +13,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 @login_required
 @permission_required('main.index_viewer', raise_exception=True)
 def index(request):
-    # return HttpResponse("Hello, World!")
+    return HttpResponse("Hello, World!")
+
+def landing(request):
     # return render(request, 'main/base.html')
     
     # Arme el endpoint del REST API
