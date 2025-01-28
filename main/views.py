@@ -13,6 +13,23 @@ from django.contrib.auth.decorators import login_required, permission_required
 @login_required
 @permission_required('main.index_viewer', raise_exception=True)
 def index(request):
+    
+    # Arme el endpoint del REST API
+    current_url = request.build_absolute_uri()
+    print(current_url)
+    
+    url = current_url + 'api/v1/landing'
+    
+    print(url)
+    
+    response_http = requests.get(url)
+    
+    print(response_http)
+    
+    response_dict = json.loads(response_http.text)
+    
+    print(response_dict)
+    
     return HttpResponse("Hello, World!")
 
 def landing(request):
