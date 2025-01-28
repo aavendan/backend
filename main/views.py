@@ -21,8 +21,10 @@ def index(request):
     current_url = 'http://web.railway.internal'
     url = current_url + '/api/v1/landing'
     
+    print(url)
+    
     # Petición al REST API
-    response_http = requests.get(url, timeout=10)
+    response_http = requests.get(url)
     response_dict = json.loads(response_http.text)
     
     # print("Endpoint ", url)
