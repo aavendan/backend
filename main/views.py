@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 import requests
 import json
+import urllib.request
 
 # Importe el decorador login_required
 from django.contrib.auth.decorators import login_required, permission_required
@@ -23,7 +24,12 @@ def index(request):
     
     # Petición al REST API
     response_http = requests.get(url, params={'format': 'json'}, verify=False)
-    response_dict = json.loads(response_http.content)
+    # response_http = urllib.request.urlopen(url)
+    
+    # raw_data = response_http.read()
+    # print(raw_data)
+    
+    response_dict = json.loads(response_http.text)
     
     # print("Endpoint ", url)
     # print("Response ", response_dict)
