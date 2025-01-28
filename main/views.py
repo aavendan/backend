@@ -22,7 +22,7 @@ def index(request):
     url = 'https://web-production-603d.up.railway.app/api/v1/landing'
     
     # Petición al REST API
-    response_http = requests.get(url, params={'format': 'json'})
+    response_http = requests.get(url, params={'format': 'json'}, verify=False)
     response_dict = json.loads(response_http.content)
     
     # print("Endpoint ", url)
