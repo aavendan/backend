@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 import requests
 import json
+import urllib.request
 
 # Importe el decorador login_required
 from django.contrib.auth.decorators import login_required, permission_required
@@ -22,11 +23,11 @@ def index(request):
     
     print(url)
     
-    response_http = requests.get(url)
+    contents = urllib.request.urlopen(url).read()
     
-    print(response_http)
+    print(contents)
     
-    response_dict = json.loads(response_http.text)
+    response_dict = json.loads(contents)
     
     print(response_dict)
     
