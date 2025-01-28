@@ -5,7 +5,6 @@ from django.http import HttpResponse
 
 import requests
 import json
-import urllib.request
 
 # Importe el decorador login_required
 from django.contrib.auth.decorators import login_required, permission_required
@@ -18,17 +17,11 @@ def index(request):
     # return render(request, 'main/base.html')
     
     # Arme el endpoint del REST API
-    # current_url = request.build_absolute_uri()
-    # url = current_url + '/api/v1/landing'
-    url = 'https://web-production-603d.up.railway.app/api/v1/landing'
+    current_url = request.build_absolute_uri()
+    url = current_url + '/api/v1/landing'
     
     # Petición al REST API
-    response_http = requests.get(url, params={'format': 'json'}, verify=False)
-    # response_http = urllib.request.urlopen(url)
-    
-    # raw_data = response_http.read()
-    # print(raw_data)
-    
+    response_http = requests.get(url)
     response_dict = json.loads(response_http.text)
     
     # print("Endpoint ", url)
