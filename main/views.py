@@ -21,8 +21,8 @@ def index(request):
     url = current_url + '/api/v1/landing'
     
     # Petición al REST API
-    response_http = requests.get(url)
-    response_dict = json.loads(response_http.content)
+    response_http = requests.get(url, verify=False)
+    response_dict = json.loads(response_http.text)
     
     # print("Endpoint ", url)
     # print("Response ", response_dict)
