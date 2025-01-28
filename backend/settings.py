@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -27,9 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--v=2-(o%_nksp(c8)clm2@2t^-0y#+bczekdt4$@0t!uv56w-@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+if not(DEBUG):
+    ALLOWED_HOSTS = os.environ["RAILWAY_PUBLIC_DOMAIN"].split(',')
+    CSRF_TRUSTED_ORIGINS = ["https://"+domain for domain in os.environ["RAILWAY_PUBLIC_DOMAIN"].split(',')]
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -48,6 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,6 +134,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / STATIC_URL,
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

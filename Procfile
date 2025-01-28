@@ -1,0 +1,2 @@
+release: python manage.py makemigrations; python manage.py migrate;python manage.py collectstatic --noinput;python manage.py createsuperuser --noinput --email=admin@example.com
+web: gunicorn backend.wsgi
