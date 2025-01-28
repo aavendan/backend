@@ -17,8 +17,9 @@ def index(request):
     # return render(request, 'main/base.html')
     
     # Arme el endpoint del REST API
-    current_url = request.build_absolute_uri()
-    url = current_url + '/api/v1/landing'
+    # current_url = request.build_absolute_uri()
+    # url = current_url + '/api/v1/landing'
+    url = 'https://web-production-603d.up.railway.app/api/v1/landing/?format=json'
     
     # Petición al REST API
     response_http = requests.get(url)
