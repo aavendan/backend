@@ -11,25 +11,18 @@ import urllib.request
 from django.contrib.auth.decorators import login_required, permission_required
 
 # Restricción de acceso con @login_required
-@login_required
-@permission_required('main.index_viewer', raise_exception=True)
+# @login_required
+# @permission_required('main.index_viewer', raise_exception=True)
 def index(request):
     
     # Arme el endpoint del REST API
     current_url = request.build_absolute_uri()
-    print(current_url)
-    
     url = current_url + 'api/v1/landing'
     
-    print(url)
-    
     contents = urllib.request.urlopen(url).read()
-    
     print(contents)
     
     response_dict = json.loads(contents)
-    
-    print(response_dict)
     
     return HttpResponse("Hello, World!")
 
